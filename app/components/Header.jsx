@@ -1,14 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import AppBar from 'material-ui/AppBar';
 
-const Header = ({ candidateName }) => (
-  <div className="header">
-    <p className="header__name">Welcome, {candidateName}</p>
-  </div>
+const Header = () => (
+  <AppBar title="Merix Recrutation Test" className="header" iconClassNameLeft="none" />
 );
-
-Header.propTypes = {
-  candidateName: PropTypes.string.isRequired,
-};
 
 export default Header;

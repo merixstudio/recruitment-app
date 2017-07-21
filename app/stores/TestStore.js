@@ -37,6 +37,16 @@ export default class Test {
     );
   }
 
+  @action saveQuestions() {
+    const questions = this.questions.filter(question => !question.isSaved);
+    questions.forEach((question) => {
+      question.isSaving = true;
+    });
+    setTimeout(() => {
+      questions.forEach(question => question.afterSave());
+    }, 500);
+  }
+
   saveQuestion(question) {
     setTimeout(() => question.afterSave(), 500);
   }

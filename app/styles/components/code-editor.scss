@@ -10,13 +10,30 @@
     line-height: 1.5em;
     color: $brown-6-color;
     height: auto;
-    margin-bottom: 1px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 1px;
+      left: 50%;
+      width: 0%;
+      height: 1px;
+      background: $amber-3-color;
+      transition-property: left, width;
+      transition-duration: .25s;
+      transition-timing-function: ease;
+    }
 
     &.CodeMirror-focused {
-      border-bottom: 1px solid $amber-3-color;
-      margin-bottom: 0px;
-      .CodeMirror-gutters, .CodeMirror-gutter-wrapper {
-        display: block;
+      position: relative;
+
+      &::after {
+        left: 0;
+        width: 100%;
+      }
+
+      .CodeMirror-gutter-wrapper {
+        opacity: 1;
       }
     }
 
@@ -33,7 +50,8 @@
       background-color: transparent;
     }
     .CodeMirror-gutter-wrapper {
-      display: none;
+      opacity: 0;
+      transition: opacity .25s ease;
     }
     .CodeMirror-cursor {
       border-left: 1px solid $amber-8-color;
@@ -58,12 +76,13 @@
   }
   &--read-only {
     .CodeMirror {
-      .CodeMirror-gutters, .CodeMirror-gutter-wrapper {
-        display: block;
+      .CodeMirror-gutter-wrapper {
+        opacity: 1;
       }
       &.CodeMirror-focused {
-        border-bottom: none;
-        margin-bottom: 1px;
+        &::after {
+          display: none;
+        }
       }
       .CodeMirror-cursor {
         border-left: none;

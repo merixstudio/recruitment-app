@@ -1,6 +1,6 @@
 .question {
   position: relative;
-  margin-top: 80px;
+  padding: 40px;
 
   &__text {
     padding-right: 100px;
@@ -8,8 +8,8 @@
   }
   &__indicator {
     position: absolute;
-    top: -5px;
-    right: 0;
+    top: 30px;
+    left: calc(100% - 100px);
 
     &--saved {
       color: $amber-5-color;

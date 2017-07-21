@@ -2,36 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-import TestStore from '../stores/Test';
-import Question from './Question';
+import TestStore from '../stores/TestStore';
+import QuestionList from './QuestionList';
+import Controls from './Controls';
+import Modal from './Modal';
 import Header from './Header';
 
 
 function appContent(testStore) {
   if (testStore.isFetching) {
-    return (<p className="app__is-fetching">Loading...</p>);
+    return (
+      <div className="app__container">
+        <p className="app__loading">Loading Questions...</p>
+      </div>
+    );
   }
 
-  return [
-    <Header key="header" candidateName={testStore.name} />,
-    <ul key="list" className="app__question-list">
-      { testStore.questions.map((question, idx) => (
-        <li key={question.id} className="app__question-item">
-          <Question number={idx + 1} question={question} submitted={testStore.isSubmitted} />
-        </li>
-      ))}
-    </ul>,
-    <a
-      key="submit"
-      className={`app__submit ${testStore.isSubmitted ? 'app__submit--disabled' : ''} `}
-      onClick={() => testStore.submitTest()}
-    >Submit</a>,
-  ];
+  return (
+    <div className="app__container">
+      <p className="app__lead">Welcome, {testStore.name}</p>
+      <QuestionList />
+      <Controls />
+    </div>
+  );
 }
 
 const App = ({ testStore }) => (
   <div className="app">
+    <Header />
     { appContent(testStore) }
+    <Modal />
   </div>
 );
 

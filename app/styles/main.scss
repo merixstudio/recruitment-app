@@ -3,6 +3,12 @@
 @import 'utils/variables';
 @import 'utils/mixins';
 
+@import 'base/base.scss';
+@import 'base/fonts.scss';
+@import 'base/forms.scss';
+@import 'base/icons.scss';
+@import 'base/normalize.scss';
+
 @import 'components/app.scss';
 @import 'components/code-editor.scss';
 @import 'components/question.scss';

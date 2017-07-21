@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -73,6 +74,9 @@ module.exports = {
     new DashboardPlugin(),
     new ExtractTextPlugin({
       filename: 'bundle.css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': process.env.NODE_ENV,
     }),
   ],
   devServer: {
