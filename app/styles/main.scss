@@ -1,3 +1,9 @@
-body {
-  background-color: #333;
-}
+@import '~codemirror/lib/codemirror.css';
+
+@import 'utils/variables';
+@import 'utils/mixins';
+
+@import 'components/app.scss';
+@import 'components/code-editor.scss';
+@import 'components/question.scss';
+@import 'components/header.scss';

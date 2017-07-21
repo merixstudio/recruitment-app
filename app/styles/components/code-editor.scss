@@ -1,0 +1,116 @@
+.code-editor {
+  width: 100%;
+  margin: 20px auto;
+  padding-bottom: 0.01em;
+
+  $this: &;
+
+  .CodeMirror {
+    font-size: 14px;
+    line-height: 1.5em;
+    color: $brown-6-color;
+    height: auto;
+    margin-bottom: 1px;
+
+    &.CodeMirror-focused {
+      border-bottom: 1px solid $amber-3-color;
+      margin-bottom: 0px;
+      .CodeMirror-gutters, .CodeMirror-gutter-wrapper {
+        display: block;
+      }
+    }
+
+
+    .CodeMirror-lines {
+      padding: 10px 0;
+    }
+    .CodeMirror-sizer {
+      border-left: 2px solid $amber-3-color;
+    }
+    .CodeMirror-gutters {
+      width: 40px;
+      border: none;
+      background-color: transparent;
+    }
+    .CodeMirror-gutter-wrapper {
+      display: none;
+    }
+    .CodeMirror-cursor {
+      border-left: 1px solid $amber-8-color;
+    }
+    .CodeMirror-sizer {
+      margin-left: 40px;
+    }
+    .CodeMirror-line {
+      padding: 0 1em;
+    }
+    .CodeMirror-linenumber {
+      font-weight: 600;
+      color: $brown-6-color;
+      color: $amber-5-color;
+    }
+  }
+
+  &--text-only {
+    .CodeMirror-linenumber {
+      display: none;
+    }
+  }
+  &--read-only {
+    .CodeMirror {
+      .CodeMirror-gutters, .CodeMirror-gutter-wrapper {
+        display: block;
+      }
+      &.CodeMirror-focused {
+        border-bottom: none;
+        margin-bottom: 1px;
+      }
+      .CodeMirror-cursor {
+        border-left: none;
+      }
+    }
+  }
+}
+
+.cm-s-custom {
+  .cm-keyword {
+    font-weight: 600;
+    color: $amber-8-color;
+  }
+  .cm-comment {
+    color: $light-green-3-color;
+  }
+  .cm-def {
+    color: $cyan-7-color;
+    font-weight: 600;
+  }
+  .cm-variable {
+    color: $cyan-5-color;
+  }
+  .cm-variable-2 {
+    color: $cyan-5-color;
+  }
+  .cm-number {
+    color: $green-8-color;
+  }
+  .cm-atom {
+    color: $light-blue-10-color;
+  }
+  .cm-string {
+    color: $lime-8-color;
+  }
+  .cm-attribute {
+    color: $amber-8-color;
+  }
+  .cm-tag {
+    color: $blue-grey-5-color;
+  }
+  .cm-builtin {
+    color: $light-blue-10-color;
+    font-weight: 600;
+  }
+  .cm-qualifier {
+    color: $deep-orange-6-color;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,19 @@
+.question {
+  position: relative;
+  margin-top: 80px;
+
+  &__text {
+    padding-right: 100px;
+    line-height: 1.5em;
+  }
+  &__indicator {
+    position: absolute;
+    top: -5px;
+    right: 0;
+
+    &--saved {
+      color: $amber-5-color;
+      border-bottom: 2px $amber-5-color solid;
+    }
+  }
+}
