@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
 import TestStore from '../stores/TestStore';
-import UIStore from '../stores/UIStore';
+import UIStoreClass from '../stores/UIStore';
 
-const Controls = ({ testStore }) => (
+const Controls = ({ testStore, UIStore }) => (
   <div key="controls" className="app__controls">
     { !testStore.isSubmitted ?
     [
       <RaisedButton key="save" className="app__button" label="save all" onClick={() => testStore.saveQuestions()} />,
-      <RaisedButton key="finish" className="app__button" label="finish"  primary />,
+      <RaisedButton key="finish" className="app__button" label="finish" onClick={() => UIStore.toggleModal()} primary />,
     ] : null
     }
   </div>
@@ -20,7 +20,7 @@ const Controls = ({ testStore }) => (
 
 Controls.propTypes = {
   testStore: PropTypes.instanceOf(TestStore).isRequired,
-  UIStore: PropTypes.instanceOf(UIStore).isRequired,
+  UIStore: PropTypes.instanceOf(UIStoreClass).isRequired,
 
 };
 

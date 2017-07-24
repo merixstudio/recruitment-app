@@ -1,0 +1,37 @@
+.modal {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+
+  &--hidden {
+    display: none;
+  }
+  &__card {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 30px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__footer {
+
+    justify-content: space-between;display: flex;
+    justify-content: flex-end;
+  }
+
+  &__confirm {
+
+  }
+  &__cancel {
+    margin-right: 20px;
+  }
+}
