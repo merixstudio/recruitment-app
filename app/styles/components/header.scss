@@ -2,4 +2,13 @@
   text-align: left;
   font-size: 22px;
   color: #fff;
+
+  button {
+    display: none;
+  }
+}
+@media (max-width: $mobile) {
+  .header {
+    font-size: 16px;
+  }
 }

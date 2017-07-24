@@ -3,17 +3,47 @@
   padding: 40px;
 
   &__text {
-    padding-right: 100px;
+    padding-right: 50px;
     line-height: 1.5em;
   }
   &__indicator {
     position: absolute;
-    top: 30px;
-    left: calc(100% - 100px);
+    top: 15px;
+    left: calc(100% - 90px);
 
     &--saved {
       color: $amber-5-color;
       border-bottom: 2px $amber-5-color solid;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .question {
+    &__indicator {
+
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .question {
+    padding: 20px;
+
+    &__text {
+      padding-right: 0;
+    }
+    &__indicator {
+      top: auto;
+      bottom: 15px;
+    }
+  }
+}
+
+@media (max-width: $mobile-small) {
+  .question {
+    &__indicator {
+      bottom: 5px;
     }
   }
 }

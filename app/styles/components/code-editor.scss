@@ -9,12 +9,12 @@
     font-size: 14px;
     line-height: 1.5em;
     color: $brown-6-color;
-    height: auto;
+    height: inherit;
 
     &::after {
       content: '';
       position: absolute;
-      bottom: 1px;
+      bottom: 0;
       left: 50%;
       width: 0%;
       height: 1px;
@@ -41,13 +41,10 @@
     .CodeMirror-lines {
       padding: 10px 0;
     }
-    .CodeMirror-sizer {
-      border-left: 2px solid $amber-3-color;
-    }
     .CodeMirror-gutters {
       width: 40px;
-      border: none;
-      background-color: transparent;
+      border-right: 2px solid $amber-3-color;
+      background-color: #fff;
     }
     .CodeMirror-gutter-wrapper {
       opacity: 0;
@@ -63,6 +60,7 @@
       padding: 0 1em;
     }
     .CodeMirror-linenumber {
+      background-color: #fff;
       font-weight: 600;
       color: $brown-6-color;
       color: $amber-5-color;

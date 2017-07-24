@@ -1,11 +1,12 @@
 .app {
   padding: 0 0 20vh;
   margin: 0 auto;
-  color: #333;
+  color: #555;
 
   &__container {
     max-width: 900px;
-    margin-left: 20vw;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
   $this: &;
 
@@ -28,13 +29,59 @@
     justify-content: flex-end;
     margin-top: 40px;
   }
+  &__lead,
+  &__loading {
+    color: #666;
+  }
   &__lead {
     font-size: 32px;
   }
-  &__button {
-    margin: 0 10px;
+  &__button:not(:last-child) {
+    margin: 0 15px;
   }
   &__loading {
     font-size: 32px;
+  }
+  &__error {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+    color: #ccc;
+    text-align: center;
+    font-size: 4rem;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: $tablet) {
+  .app {
+    &__lead, &__loading {
+      font-size: 28px;
+    }
+    &__question-item:not(:first-child) {
+      margin-top: 40px;
+    }
+
+  }
+}
+
+@media (max-width: $mobile) {
+  .app {
+    &__lead, &__loading {
+      font-size: 24px;
+    }
+    &__error {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media (max-width: $mobile-small) {
+  .app {
+    &__error {
+      font-size: 2rem;
+    }
   }
 }
