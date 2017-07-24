@@ -33,7 +33,6 @@ export default class CodeEditor extends React.Component {
       value: this.props.content,
       mode: getModeForLanguage(this.props.language),
       lineNumbers: true,
-      lineWrapping: true,
       readOnly: this.props.readOnly,
       theme: 'custom',
     });
@@ -63,7 +62,6 @@ export default class CodeEditor extends React.Component {
       <div
         ref={(el) => { this.editor = el; }}
         className={`code-editor
-          ${this.props.language === 'text' ? 'code-editor--text-only' : ''}
           ${this.props.readOnly ? 'code-editor--read-only' : ''}`}
       />
     );
