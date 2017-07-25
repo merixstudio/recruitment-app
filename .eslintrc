@@ -16,6 +16,7 @@
     "no-underscore-dangle": [2, { "allow": ["_id"] }],
     "no-console": 1,
     "no-alert": 2,
+    "no-undef": 0,
     "arrow-body-style": [2, "as-needed"],
     "no-confusing-arrow": [2, {"allowParens": true}],
     "jsx-a11y/media-has-caption": 0
