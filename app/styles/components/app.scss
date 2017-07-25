@@ -10,6 +10,9 @@
     padding: 0 1rem;
     position: relative;
   }
+  &__container--relative {
+    position: relative;
+  }
   $this: &;
 
   &::after {
