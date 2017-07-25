@@ -26,9 +26,14 @@ function appContent(testStore) {
     );
   }
 
+  const saved = testStore.questions.filter(question => question.isSaved).length;
+  const all = testStore.questions.length;
   return (
-    <div className="app__container">
+    <div className="app__container app__container--relative">
       <p className="app__lead">Welcome, {testStore.name}</p>
+      <div className={`app__done ${saved === all ? 'app__done--all' : ''}`}>
+        {saved}/{all}
+      </div>
       <QuestionList />
       <Controls />
     </div>

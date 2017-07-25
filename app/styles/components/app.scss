@@ -2,11 +2,13 @@
   padding: 0 0 20vh;
   margin: 0 auto;
   color: #555;
-
+  position: relative;
+  min-height: 100vh;
   &__container {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
   }
   $this: &;
 
@@ -52,6 +54,18 @@
     text-align: center;
     font-size: 4rem;
     transform: translateY(-50%);
+  }
+  &__done {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 24px;
+    line-height: 32px;
+
+    &--all {
+      color: $amber-7-color;
+      font-weight: bold;
+    }
   }
 }
 
