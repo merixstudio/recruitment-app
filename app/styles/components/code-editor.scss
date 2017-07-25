@@ -65,6 +65,21 @@
       color: $brown-6-color;
       color: $amber-5-color;
     }
+    .CodeMirror-overlayscroll-horizontal {
+      div {
+        height: 10px;
+        background-color: $amber-6-color;
+        opacity: .6;
+
+      }
+    }
+    .CodeMirror-overlayscroll-vertical {
+      div {
+        width: 10px;
+        background-color: $amber-6-color;
+        opacity: .6;
+      }
+    }
   }
 
   &--text-only {
@@ -130,4 +145,23 @@
     color: $deep-orange-6-color;
     font-weight: 600;
   }
+}
+
+
+@media (max-width: $mobile) {
+  .code-editor {
+    .CodeMirror {
+      .CodeMirror-overlayscroll-horizontal {
+        div {
+          height: 5px;
+        }
+      }
+      .CodeMirror-overlayscroll-vertical {
+        div {
+          width: 5px;
+        }
+      }
+    }
+  }
+
 }

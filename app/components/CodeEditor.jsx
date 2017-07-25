@@ -2,7 +2,9 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/htmlmixed/htmlmixed';
-import 'codemirror/addon/comment/comment';
+import 'codemirror/keymap/sublime';
+import 'codemirror/addon/scroll/simplescrollbars';
+import 'codemirror/addon/scroll/simplescrollbars.css';
 
 import CodeMirror from 'codemirror/lib/codemirror';
 import React from 'react';
@@ -30,17 +32,20 @@ function getModeForLanguage(language) {
 export default class CodeEditor extends React.Component {
   componentDidMount() {
     const codeMirror = CodeMirror(this.editor, {
-      value: this.props.content,
-      mode: getModeForLanguage(this.props.language),
-      lineNumbers: true,
-      readOnly: this.props.readOnly,
+      tabSize: 2,
       theme: 'custom',
+      keyMap: 'sublime',
+      lineNumbers: true,
+      scrollbarStyle: 'overlay',
+      value: this.props.content,
+      readOnly: this.props.readOnly,
+      mode: getModeForLanguage(this.props.language),
+      extraKeys: {
+        'Ctrl-S': () => this.props.onSave(),
+      },
     });
 
     codeMirror.on('blur', () => this.props.onSave());
-    codeMirror.addKeyMap({
-      'Ctrl-S': () => this.props.onSave(),
-    });
 
     codeMirror.on('change', (instance) => {
       if (this.props.maxHeight) {
@@ -57,12 +62,12 @@ export default class CodeEditor extends React.Component {
       this.codeMirror.setOption('readOnly', nextProps.readOnly);
     }
   }
+
   render() {
     return (
       <div
         ref={(el) => { this.editor = el; }}
-        className={`code-editor
-          ${this.props.readOnly ? 'code-editor--read-only' : ''}`}
+        className={`code-editor ${this.props.readOnly ? 'code-editor--read-only' : ''}`}
       />
     );
   }
