@@ -18,6 +18,14 @@ function appContent(testStore) {
     );
   }
 
+  if (testStore.hasFailedToLoad) {
+    return (
+      <div className="app__container">
+        <p className="app__error">Test has failed to load</p>
+      </div>
+    );
+  }
+
   return (
     <div className="app__container">
       <p className="app__lead">Welcome, {testStore.name}</p>
