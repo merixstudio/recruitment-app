@@ -8,7 +8,6 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 0 1rem;
-    position: relative;
   }
   &__container--relative {
     position: relative;
@@ -66,7 +65,7 @@
     line-height: 32px;
 
     &--all {
-      color: $amber-7-color;
+      color: $merix-1-color;
       font-weight: bold;
     }
   }

@@ -18,7 +18,7 @@
       left: 50%;
       width: 0%;
       height: 1px;
-      background: $amber-3-color;
+      background: $merix-1-color;
       transition-property: left, width;
       transition-duration: .25s;
       transition-timing-function: ease;
@@ -43,7 +43,7 @@
     }
     .CodeMirror-gutters {
       width: 40px;
-      border-right: 2px solid $amber-3-color;
+      border-right: 2px solid $merix-1-color;
       background-color: #fff;
     }
     .CodeMirror-gutter-wrapper {
@@ -62,13 +62,12 @@
     .CodeMirror-linenumber {
       background-color: #fff;
       font-weight: 600;
-      color: $brown-6-color;
-      color: $amber-5-color;
+      color: $merix-1-color;
     }
     .CodeMirror-overlayscroll-horizontal {
       div {
         height: 10px;
-        background-color: $amber-6-color;
+        background-color: $merix-1-color;
         opacity: .6;
 
       }
@@ -76,7 +75,7 @@
     .CodeMirror-overlayscroll-vertical {
       div {
         width: 10px;
-        background-color: $amber-6-color;
+        background-color: $merix-1-color;
         opacity: .6;
       }
     }

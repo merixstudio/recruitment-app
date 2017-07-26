@@ -10,11 +10,6 @@
     position: absolute;
     top: 15px;
     left: calc(100% - 90px);
-
-    &--saved {
-      color: $amber-5-color;
-      border-bottom: 2px $amber-5-color solid;
-    }
   }
 }
 

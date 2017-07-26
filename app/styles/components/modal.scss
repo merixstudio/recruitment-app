@@ -20,7 +20,9 @@
     padding: 30px 60px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    &>div {
+      justify-content: space-between;
+    }
   }
   &__footer {
 
