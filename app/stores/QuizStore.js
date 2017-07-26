@@ -1,13 +1,13 @@
 import { action, observable } from 'mobx';
-import test from '../test';
-import Question from './objects/Question';
-import getQuery from '../utils/getQuery';
 
-export default class Test {
+import Question from './objects/Question';
+import request from '../utils/request';
+import { backendUrl } from '../config';
+
+export default class Quiz {
   candidateId = null;
-  @observable candidateName = null;
+  @observable applicant = null;
   @observable questions = [];
-  @observable types = [];
   @observable isFetching = false;
   @observable hasFailedToLoad = false;
   @observable isSubmitting = false;
@@ -15,13 +15,14 @@ export default class Test {
   @observable isSubmitted = false;
 
 
-  @action submitTest() {
+  @action submitQuiz() {
     if (this.isSubmitted) return;
     this.isSubmitting = true;
     const questions = this.questions.filter(question => !question.isSaved);
     questions.forEach((question) => {
       question.isSaving = true;
     });
+
     setTimeout(
       action.bound(() => {
         this.isSubmitting = false;
@@ -32,23 +33,26 @@ export default class Test {
     );
   }
 
-  @action fetchTest() {
-    if (!getQuery()) {
+  @action fetchQuiz() {
+    if (!location.pathname) {
       this.hasFailedToLoad = true;
       return;
     }
 
-    const id = getQuery().id;
+    const id = location.pathname.slice(1);
+
     this.isFetching = true;
-    setTimeout(
-      action.bound(() => {
-        this.name = test.name;
-        this.questions = test.questions.map(question => new Question(this, question));
-        this.types = test.types;
+    request.get(`${backendUrl}/quiz/${id}`)
+      .then(action.bound((quiz) => {
+        this.applicant = quiz.applicant;
+        this.questions = quiz.questions.map(question =>
+          new Question(this, question, quiz.language));
         this.isFetching = false;
-      }),
-      1000,
-    );
+      }))
+      .catch(action.bound(() => {
+        this.isFetching = false;
+        this.hasFailedToLoad = true;
+      }));
   }
 
   @action saveQuestions() {

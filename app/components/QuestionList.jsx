@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
 import Question from './Question';
-import TestStore from '../stores/TestStore';
+import QuizStore from '../stores/QuizStore';
 
-const QuestionList = ({ testStore }) => (
+const QuestionList = ({ quizStore }) => (
   <ul key="list" className="app__question-list">
-    { testStore.questions.map((question, idx) => (
+    { quizStore.questions.map((question, idx) => (
       <li key={question.id} className="app__question-item">
-        <Question number={idx + 1} question={question} submitted={testStore.isSubmitted} />
+        <Question number={idx + 1} question={question} submitted={quizStore.isSubmitted} />
       </li>
     ))}
   </ul>
 );
 
 QuestionList.propTypes = {
-  testStore: PropTypes.instanceOf(TestStore).isRequired,
+  quizStore: PropTypes.instanceOf(QuizStore).isRequired,
 };
 
-export default inject('testStore')(observer(QuestionList));
+export default inject('quizStore')(observer(QuestionList));

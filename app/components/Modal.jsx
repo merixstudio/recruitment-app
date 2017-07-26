@@ -4,14 +4,14 @@ import { observer, inject } from 'mobx-react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Card from 'material-ui/Card';
 
-import TestStore from '../stores/TestStore';
+import QuizStore from '../stores/QuizStore';
 import UIStoreClass from '../stores/UIStore';
 
-const Modal = ({ testStore, UIStore }) => (
+const Modal = ({ quizStore, UIStore }) => (
   <div className={`modal ${UIStore.isModalOpen ? '' : 'modal--hidden'}`} onClick={() => UIStore.toggleModal()}>
     <Card
       className="modal__card"
-      containerStyle={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}
+      containerStyle={{ display: 'flex', flexDirection: 'column', justifyAnswer: 'space-between', height: '100%' }}
       onClick={event => event.stopPropagation()}
     >
       <p className="modal__body">
@@ -24,7 +24,7 @@ const Modal = ({ testStore, UIStore }) => (
           label="Yes"
           className="modal__confirm"
           onClick={() => {
-            testStore.submitTest();
+            quizStore.submitQuiz();
             UIStore.toggleModal();
           }}
           primary
@@ -35,8 +35,8 @@ const Modal = ({ testStore, UIStore }) => (
 );
 
 Modal.propTypes = {
-  testStore: PropTypes.instanceOf(TestStore).isRequired,
+  quizStore: PropTypes.instanceOf(QuizStore).isRequired,
   UIStore: PropTypes.instanceOf(UIStoreClass).isRequired,
 };
 
-export default inject('testStore', 'UIStore')(observer(Modal));
+export default inject('quizStore', 'UIStore')(observer(Modal));

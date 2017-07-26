@@ -4,26 +4,30 @@ export default class Question {
   @observable isSaved = false;
   @observable isSaving = false;
   @observable isDirty = false;
-  @observable content = '';
+  @observable answer = '';
   wasSaved = false;
   store = null;
   id = null;
   type = null;
-  text = '';
-  previousContent = '';
+  question = '';
+  previousAnswer = '';
 
-  constructor(store, { content, text, id, type }) {
+  constructor(store, { answer, default_answer, question, id }, type) {
     this.store = store;
     this.id = id;
-    this.text = text;
-    this.content = content;
-    this.previousContent = content;
+    this.question = question;
+    this.answer = answer;
+    this.defaultAnswer = default_answer;
+    this.previousAnswer = answer;
     this.type = type;
+    if (default_answer !== answer) {
+      this.isSaved = true;
+    }
   }
 
-  @action setDirty(newContent) {
-    this.content = newContent;
-    if (this.previousContent !== this.content) {
+  @action setDirty(newAnswer) {
+    this.answer = newAnswer;
+    if (this.previousAnswer !== this.answer) {
       this.isDirty = true;
       this.isSaved = false;
     } else {
@@ -39,7 +43,7 @@ export default class Question {
     this.isDirty = false;
     this.isSaved = true;
     this.wasSaved = true;
-    this.previousContent = this.content;
+    this.previousAnswer = this.answer;
   }
 
   @action save() {

@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
-import { amber500 } from 'material-ui/styles/colors';
-
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+
+import { merix50 } from '../utils/variables';
 import CodeEditor from './CodeEditor';
 import QuestionObservable from '../stores/objects/Question';
 
@@ -14,7 +14,7 @@ function saveBar(isSaved, isSaving) {
     return (
       <Chip
         className="question__indicator question__indicator--saving"
-        backgroundColor={amber500}
+        backgroundColor={merix50}
         labelColor="#ffffff"
         style={{ position: 'absolute' }}
       >Saved</Chip>
@@ -27,13 +27,13 @@ const Question = observer(({ number, question, submitted }) => (
   <Card className="question">
     <p className="question__text">
       <span className="question__number">{ number }. </span>
-      { question.text }
+      { question.question }
     </p>
     <CodeEditor
       onSave={() => question.save()}
-      onChange={newContent => question.setDirty(newContent)}
+      onChange={newAnswer => question.setDirty(newAnswer)}
       language={question.type}
-      content={question.content}
+      answer={question.answer}
       readOnly={submitted}
       maxHeight={350}
     />

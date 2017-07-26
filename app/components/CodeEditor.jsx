@@ -37,7 +37,7 @@ export default class CodeEditor extends React.Component {
       keyMap: 'sublime',
       lineNumbers: true,
       scrollbarStyle: 'overlay',
-      value: this.props.content,
+      value: this.props.answer,
       readOnly: this.props.readOnly,
       mode: getModeForLanguage(this.props.language),
       extraKeys: {
@@ -75,7 +75,7 @@ export default class CodeEditor extends React.Component {
 
 CodeEditor.propTypes = {
   readOnly: PropTypes.bool,
-  content: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
   maxHeight: PropTypes.number.isRequired,
   onSave: PropTypes.func,

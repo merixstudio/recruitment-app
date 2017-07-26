@@ -4,18 +4,20 @@ import { Provider } from 'mobx-react';
 import { useStrict } from 'mobx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { amber500 } from 'material-ui/styles/colors';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import './styles/main.scss';
+import { merix50 } from './utils/variables';
 import App from './components/App';
-import TestStore from './stores/TestStore';
+import QuizStore from './stores/QuizStore';
 import _UIStore from './stores/UIStore';
 
 useStrict(true);
+injectTapEventPlugin();
 const root = document.querySelector('.application-root');
-const testStore = new TestStore();
+const quizStore = new QuizStore();
 const UIStore = new _UIStore();
-testStore.fetchTest();
+quizStore.fetchQuiz();
 
 window.addEventListener('keydown', (event) => {
   if (event.key === 's' && event.ctrlKey) event.preventDefault();
@@ -23,13 +25,13 @@ window.addEventListener('keydown', (event) => {
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: amber500,
+    primary1Color: merix50,
   },
 });
 
 ReactDOM.render((
   <MuiThemeProvider muiTheme={muiTheme}>
-    <Provider testStore={testStore} UIStore={UIStore}>
+    <Provider quizStore={quizStore} UIStore={UIStore}>
       <App />
     </Provider>
   </MuiThemeProvider>

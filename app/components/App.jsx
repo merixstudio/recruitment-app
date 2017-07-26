@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-import TestStore from '../stores/TestStore';
+import QuizStore from '../stores/QuizStore';
 import QuestionList from './QuestionList';
 import Controls from './Controls';
 import Modal from './Modal';
 import Header from './Header';
 
 
-function appContent(testStore) {
-  if (testStore.isFetching) {
+function appAnswer(quizStore) {
+  if (quizStore.isFetching) {
     return (
       <div className="app__container">
         <p className="app__loading">Loading Questions...</p>
@@ -18,19 +18,19 @@ function appContent(testStore) {
     );
   }
 
-  if (testStore.hasFailedToLoad) {
+  if (quizStore.hasFailedToLoad) {
     return (
       <div className="app__container">
-        <p className="app__error">Test has failed to load</p>
+        <p className="app__error">Quiz has failed to load</p>
       </div>
     );
   }
 
-  const saved = testStore.questions.filter(question => question.isSaved).length;
-  const all = testStore.questions.length;
+  const saved = quizStore.questions.filter(question => question.isSaved).length;
+  const all = quizStore.questions.length;
   return (
     <div className="app__container app__container--relative">
-      <p className="app__lead">Welcome, {testStore.name}</p>
+      <p className="app__lead">Welcome, {quizStore.applicant}</p>
       <div className={`app__done ${saved === all ? 'app__done--all' : ''}`}>
         {saved}/{all}
       </div>
@@ -40,16 +40,16 @@ function appContent(testStore) {
   );
 }
 
-const App = ({ testStore }) => (
+const App = ({ quizStore }) => (
   <div className="app">
     <Header />
-    { appContent(testStore) }
+    { appAnswer(quizStore) }
     <Modal />
   </div>
 );
 
 App.propTypes = {
-  testStore: PropTypes.instanceOf(TestStore).isRequired,
+  quizStore: PropTypes.instanceOf(QuizStore).isRequired,
 };
 
-export default inject('testStore')(observer(App));
+export default inject('quizStore')(observer(App));
