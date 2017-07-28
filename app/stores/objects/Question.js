@@ -12,15 +12,15 @@ export default class Question {
   question = '';
   previousAnswer = '';
 
-  constructor(store, { answer, default_answer, question, id }, type) {
+  constructor(store, { answer, default_answer, question, id, language }, isSubmitted) {
     this.store = store;
     this.id = id;
     this.question = question;
     this.answer = answer;
     this.defaultAnswer = default_answer;
     this.previousAnswer = answer;
-    this.type = type;
-    if (default_answer !== answer) {
+    this.language = language;
+    if (default_answer !== answer || isSubmitted) {
       this.isSaved = true;
     }
   }
@@ -51,5 +51,12 @@ export default class Question {
       this.isSaving = true;
       this.store.saveQuestion(this);
     }
+  }
+  toJSON() {
+    return {
+      id: this.id,
+      answer: this.answer,
+      question: this.question,
+    };
   }
 }

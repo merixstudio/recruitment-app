@@ -32,7 +32,7 @@ const Question = observer(({ number, question, submitted }) => (
     <CodeEditor
       onSave={() => question.save()}
       onChange={newAnswer => question.setDirty(newAnswer)}
-      language={question.type}
+      language={question.language}
       answer={question.answer}
       readOnly={submitted}
       maxHeight={350}
