@@ -12,15 +12,16 @@ export default class Question {
   question = '';
   previousAnswer = '';
 
-  constructor(store, { answer, default_answer, question, id, language }, isSubmitted) {
+  constructor(store, questionData) {
+    const { answer, default_answer: defaultAnswer, question, id, language } = questionData;
     this.store = store;
     this.id = id;
     this.question = question;
     this.answer = answer;
-    this.defaultAnswer = default_answer;
+    this.defaultAnswer = defaultAnswer;
     this.previousAnswer = answer;
     this.language = language;
-    if (default_answer !== answer || isSubmitted) {
+    if (defaultAnswer !== answer) {
       this.isSaved = true;
     }
   }
@@ -48,10 +49,10 @@ export default class Question {
 
   @action save() {
     if (this.isDirty) {
-      this.isSaving = true;
       this.store.saveQuestion(this);
     }
   }
+
   toJSON() {
     return {
       id: this.id,
