@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 
 import { merix50 } from '../utils/variables';
-import CodeEditor from './CodeEditor';
+import CodeEditor from '../components/CodeEditor';
 import QuestionObservable from '../stores/objects/Question';
 
 function saveBar(isSaved, isSaving) {
@@ -23,7 +23,7 @@ function saveBar(isSaved, isSaving) {
   return null;
 }
 
-const Question = observer(({ number, question, submitted }) => (
+const Question = ({ number, question, submitted }) => (
   <Card className="question">
     <p className="question__text">
       <span className="question__number">{ number }. </span>
@@ -39,7 +39,7 @@ const Question = observer(({ number, question, submitted }) => (
     />
     { saveBar(question.isSaved, question.isSaving) }
   </Card>
-));
+);
 
 Question.propTypes = {
   number: PropTypes.number.isRequired,
@@ -51,4 +51,4 @@ Question.defaultProps = {
   submitted: false,
 };
 
-export default Question;
+export default observer(Question);

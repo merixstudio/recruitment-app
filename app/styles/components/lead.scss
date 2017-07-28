@@ -1,0 +1,37 @@
+.lead {
+  margin-bottom: 60px;
+
+  &__heading {
+    color: #666;
+  }
+  &__heading {
+    font-size: 32px;
+  }
+  &__paragraph {
+    line-height: 1.5em;
+    padding-right: 10%;
+    text-indent: 2em;
+  }
+}
+
+@media (max-width: $tablet) {
+  .lead {
+    &__heading {
+      font-size: 28px;
+    }
+    &__paragraph {
+      padding: 0;
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .lead {
+    &__paragraph {
+      font-size: 14px;
+    }
+    &__heading {
+      font-size: 24px;
+    }
+  }
+}

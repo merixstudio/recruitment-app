@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import './styles/main.scss';
 import { merix50 } from './utils/variables';
-import App from './components/App';
+import App from './observers/App';
 import QuizStore from './stores/QuizStore';
 import _UIStore from './stores/UIStore';
 

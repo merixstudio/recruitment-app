@@ -33,19 +33,10 @@
     justify-content: flex-end;
     margin-top: 40px;
   }
-  &__heading,
   &__loading {
     color: #666;
   }
-  &__heading {
-    font-size: 32px;
-  }
-  &__lead {
-    line-height: 1.5em;
-    padding-right: 10%;
-    margin-bottom: 60px;
-    text-indent: 2em;
-  }
+
   &__button:not(:last-child) {
     margin: 0 15px;
   }
@@ -79,7 +70,7 @@
 
 @media (max-width: $tablet) {
   .app {
-    &__lead, &__loading {
+    &__loading {
       font-size: 28px;
     }
     &__question-item:not(:first-child) {
@@ -91,7 +82,7 @@
 
 @media (max-width: $mobile) {
   .app {
-    &__lead, &__loading {
+    &__loading {
       font-size: 24px;
     }
     &__error {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-import Question from './Question';
+import Question from '../observers/Question';
 import QuizStore from '../stores/QuizStore';
 
 const QuestionList = ({ quizStore }) => (
