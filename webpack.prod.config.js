@@ -9,9 +9,8 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'app'),
+    path: path.resolve(__dirname, 'dist'),
   },
-  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -32,13 +31,13 @@ module.exports = {
           use: [{
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              minimize: true,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              minimize: true,
             },
           }],
         }),
@@ -48,9 +47,6 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
           }],
         }),
       },
@@ -84,9 +80,4 @@ module.exports = {
       'process.env.NODE_ENV': process.env.NODE_ENV,
     }),
   ],
-  devServer: {
-    contentBase: path.join(__dirname, 'app'),
-    historyApiFallback: true,
-    port: 4000,
-  },
 };
