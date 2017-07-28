@@ -8,7 +8,7 @@ import QuizStore from '../stores/QuizStore';
 import UIStoreClass from '../stores/UIStore';
 
 const Modal = ({ quizStore, UIStore }) => (
-  <div className={`modal ${UIStore.isModalOpen ? '' : 'modal--hidden'}`} onClick={() => UIStore.toggleModal()}>
+  <div role="presentation" className={`modal ${UIStore.isModalOpen ? '' : 'modal--hidden'}`} onClick={() => UIStore.toggleModal()}>
     <Card
       className="modal__card"
       containerStyle={{ display: 'flex', flexDirection: 'column', justifyAnswer: 'space-between', height: '100%' }}

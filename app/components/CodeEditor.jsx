@@ -1,5 +1,7 @@
 import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/jsx/jsx';
 import 'codemirror/mode/css/css';
+import 'codemirror/mode/django/django';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/keymap/sublime';
@@ -21,6 +23,8 @@ function checkHeight(editor, height, maxHeight) {
 
 function getModeForLanguage(language) {
   switch (language) {
+    case 'django-template': return 'django';
+    case 'jsx': return 'jsx';
     case 'html': return 'htmlmixed';
     case 'javascript': return 'javascript';
     case 'python': return 'python';
@@ -53,6 +57,10 @@ export default class CodeEditor extends React.Component {
       }
       this.props.onChange(instance.getValue());
     });
+
+    if (this.props.maxHeight) {
+      checkHeight(this.editor, codeMirror.doc.height, this.props.maxHeight);
+    }
 
     this.codeMirror = codeMirror;
   }
