@@ -14,6 +14,9 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      app: path.resolve(__dirname, 'app'),
+    },
   },
   module: {
     rules: [
