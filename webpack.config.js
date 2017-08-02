@@ -86,6 +86,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': process.env.NODE_ENV,
     }),
+    new webpack.EnvironmentPlugin({
+      BACKEND_URL: 'http://localhost:8000',
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'app'),
