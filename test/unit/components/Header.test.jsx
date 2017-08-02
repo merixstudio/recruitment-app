@@ -1,10 +1,9 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
 
 import AppBar from 'material-ui/AppBar';
 import Header from 'app/components/Header';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
