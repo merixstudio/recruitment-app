@@ -6,7 +6,7 @@
   "scripts": {
     "test": "karma start test/karma.config.js",
     "start": "webpack-dev-server",
-    "production": "webpack -p --config ./webpack.prod.config.js"
+    "production": "webpack -p --progress --config ./webpack.prod.config.js"
   },
   "repository": {
     "type": "git",

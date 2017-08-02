@@ -13,7 +13,7 @@ ENV BACKEND_URL=$backend_url
 ARG crossbar_url
 ENV CROSSBAR_URL=$crossbar_url
 
-RUN yarn prod
+RUN yarn production
 
 FROM nginx:latest
 
