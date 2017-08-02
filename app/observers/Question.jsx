@@ -23,6 +23,19 @@ function saveBar(isSaved, isSaving) {
   return null;
 }
 
+function resetQuestion(question) {
+  if (question.defaultAnswer !== question.answer) {
+    return (
+      <div className="question__reset" onClick={() => question.resetToDefault()}>
+        <div className="question__reset-info" onClick={(event) => event.preventDefault()}>
+          It will reset answer to default.
+        </div>
+      </div>
+    );
+  }
+  return null;
+}
+
 const Question = ({ number, question, submitted }) => (
   <Card className="question">
     <p className="question__text">
@@ -36,8 +49,10 @@ const Question = ({ number, question, submitted }) => (
       answer={question.answer}
       readOnly={submitted}
       maxHeight={350}
+      reset={question.reset}
     />
     { saveBar(question.isSaved, question.isSaving) }
+    { resetQuestion(question) }
   </Card>
 );
 

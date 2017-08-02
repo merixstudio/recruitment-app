@@ -150,6 +150,12 @@
 @media (max-width: $mobile) {
   .code-editor {
     .CodeMirror {
+      .CodeMirror-gutters {
+        width: 20px;
+      }
+      .CodeMirror-sizer {
+        margin-left: 20px;
+      }
       .CodeMirror-overlayscroll-horizontal {
         div {
           height: 5px;
@@ -159,6 +165,9 @@
         div {
           width: 5px;
         }
+      }
+      .CodeMirror-linenumber {
+        margin-left: -15px;
       }
     }
   }

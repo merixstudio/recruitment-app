@@ -16,3 +16,11 @@
        url('../fonts/roboto-v16-latin-500.woff2') format('woff2'),
        url('../fonts/roboto-v16-latin-500.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Icons';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/fontawesome-webfont.woff2') format('woff2'),
+       url('../fonts/fontawesome-webfont.woff') format('woff');
+}

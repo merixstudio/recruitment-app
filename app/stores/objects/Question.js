@@ -4,12 +4,14 @@ export default class Question {
   @observable isSaved = false;
   @observable isSaving = false;
   @observable isDirty = false;
+  @observable reset = false;
   @observable answer = '';
   store = null;
   id = null;
   type = null;
   question = '';
   previousAnswer = '';
+  defaultAnswer = '';
 
   constructor(store, questionData) {
     const { answer, default_answer: defaultAnswer, question, id, language } = questionData;
@@ -26,16 +28,29 @@ export default class Question {
   }
 
   @action changeAnswer(newAnswer) {
+    this.reset = false;
     this.answer = newAnswer;
-    if (this.previousAnswer !== this.answer) {
+    if (this.previousAnswer !== this.answer && this.answer !== this.defaultAnswer) {
       this.isDirty = true;
       this.isSaved = false;
     } else {
       this.isDirty = false;
       if (this.answer !== this.defaultAnswer) {
         this.isSaved = true;
+      } else {
+        this.isSaved = false;
       }
     }
+  }
+
+  @action resetToDefault() {
+    this.answer = this.defaultAnswer;
+    this.previousAnswer = this.defaultAnswer;
+    this.reset = true;
+    this.store.saveQuestion(this).then(action.bound(() => {
+      this.isDirty = false;
+      this.isSaved = false;
+    }));
   }
 
   @action afterSave() {

@@ -69,6 +69,9 @@ export default class CodeEditor extends React.Component {
     if (nextProps.readOnly !== this.props.readOnly) {
       this.codeMirror.setOption('readOnly', nextProps.readOnly);
     }
+    if (nextProps.reset) {
+      this.codeMirror.setValue(nextProps.answer);
+    }
   }
 
   render() {
@@ -85,12 +88,14 @@ CodeEditor.propTypes = {
   readOnly: PropTypes.bool,
   answer: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
+  reset: PropTypes.bool,
   maxHeight: PropTypes.number,
   onSave: PropTypes.func,
   onChange: PropTypes.func,
 };
 
 CodeEditor.defaultProps = {
+  reset: false,
   readOnly: false,
   maxHeight: null,
   onSave: () => {},
