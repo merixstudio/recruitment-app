@@ -61,7 +61,6 @@ module.exports = function karmaConfig(config) {
         ],
       },
       externals: {
-        cheerio: 'window',
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
         'react/lib/ReactContext': true,
@@ -71,7 +70,7 @@ module.exports = function karmaConfig(config) {
     webpackMiddleware: {
       stats: 'errors-only',
     },
-    reporters: ['progress'],
+    reporters: ['mocha'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

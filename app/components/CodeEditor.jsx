@@ -85,13 +85,14 @@ CodeEditor.propTypes = {
   readOnly: PropTypes.bool,
   answer: PropTypes.string.isRequired,
   language: PropTypes.string.isRequired,
-  maxHeight: PropTypes.number.isRequired,
+  maxHeight: PropTypes.number,
   onSave: PropTypes.func,
   onChange: PropTypes.func,
 };
 
 CodeEditor.defaultProps = {
   readOnly: false,
+  maxHeight: null,
   onSave: () => {},
   onChange: () => {},
 };

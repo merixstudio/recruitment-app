@@ -44,7 +44,7 @@ const Question = ({ number, question, submitted }) => (
 Question.propTypes = {
   number: PropTypes.number.isRequired,
   submitted: PropTypes.bool,
-  question: PropTypes.instanceOf(QuestionObservable),
+  question: PropTypes.instanceOf(QuestionObservable).isRequired,
 };
 
 Question.defaultProps = {
