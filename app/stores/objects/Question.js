@@ -5,7 +5,6 @@ export default class Question {
   @observable isSaving = false;
   @observable isDirty = false;
   @observable answer = '';
-  wasSaved = false;
   store = null;
   id = null;
   type = null;
@@ -26,14 +25,14 @@ export default class Question {
     }
   }
 
-  @action setDirty(newAnswer) {
+  @action changeAnswer(newAnswer) {
     this.answer = newAnswer;
     if (this.previousAnswer !== this.answer) {
       this.isDirty = true;
       this.isSaved = false;
     } else {
       this.isDirty = false;
-      if (this.wasSaved) {
+      if (this.answer !== this.defaultAnswer) {
         this.isSaved = true;
       }
     }
@@ -43,7 +42,6 @@ export default class Question {
     this.isSaving = false;
     this.isDirty = false;
     this.isSaved = true;
-    this.wasSaved = true;
     this.previousAnswer = this.answer;
   }
 

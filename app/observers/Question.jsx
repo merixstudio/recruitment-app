@@ -31,7 +31,7 @@ const Question = ({ number, question, submitted }) => (
     </p>
     <CodeEditor
       onSave={() => question.save()}
-      onChange={newAnswer => question.setDirty(newAnswer)}
+      onChange={newAnswer => question.changeAnswer(newAnswer)}
       language={question.language}
       answer={question.answer}
       readOnly={submitted}

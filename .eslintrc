@@ -13,7 +13,7 @@
     "import/no-unresolved": [2, {"commonjs": true}],
     "import/no-named-as-default": 2,
     "import/prefer-default-export": 0,
-    "no-underscore-dangle": [2, { "allow": ["_id"] }],
+    "no-underscore-dangle": [2, { "allow": ["_id", "__Rewire__"] }],
     "no-console": 1,
     "no-alert": 2,
     "no-undef": 0,

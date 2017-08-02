@@ -2,12 +2,14 @@ import {
   action,
   observable,
 } from 'mobx';
-import {
+import actions from './quizActions';
+
+const {
   fetchQuiz,
   submitQuiz,
   saveQuestions,
   saveQuestion,
-} from './quizActions';
+} = actions;
 
 export default class Quiz {
   candidateId = null;

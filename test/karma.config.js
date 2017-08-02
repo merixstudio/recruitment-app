@@ -30,7 +30,7 @@ module.exports = function karmaConfig(config) {
             exclude: /node_modules/,
             use: [
               {
-                loader: 'babel-loader',
+                loader: 'babel-loader?plugins=rewire',
               },
             ],
           },
