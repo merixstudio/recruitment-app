@@ -10,8 +10,6 @@ ADD . /code/
 
 ARG backend_url
 ENV BACKEND_URL=$backend_url
-ARG crossbar_url
-ENV CROSSBAR_URL=$crossbar_url
 
 RUN yarn production
 

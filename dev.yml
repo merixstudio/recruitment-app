@@ -4,11 +4,11 @@ services:
     build:
       context: .
       dockerfile: ./compose/Dockerfile.dev
-    command: yarn dev
+    command: yarn start
     volumes:
       - .:/code
     ports:
-      - "8080:8080"
+      - "4000:4000"
 volumes:
   webpack:
     driver: local
