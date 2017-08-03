@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, observable, computed } from 'mobx';
 
 export default class Question {
   @observable isSaved = false;
@@ -18,24 +18,32 @@ export default class Question {
     this.store = store;
     this.id = id;
     this.question = question;
-    this.answer = answer;
-    this.defaultAnswer = defaultAnswer;
-    this.previousAnswer = answer;
+    this.answer = answer.replace(/\r/g, '');
+    this.defaultAnswer = defaultAnswer.replace(/\r/g, '');
+    this.previousAnswer = answer.replace(/\r/g, '');
     this.language = language;
-    if (defaultAnswer !== answer) {
+    if (!this.isDefault) {
       this.isSaved = true;
     }
+  }
+
+  @computed get isDefault() {
+    return this.answer === this.defaultAnswer;
+  }
+
+  @computed get isPrevious() {
+    return this.answer === this.previousAnswer;
   }
 
   @action changeAnswer(newAnswer) {
     this.reset = false;
     this.answer = newAnswer;
-    if (this.previousAnswer !== this.answer && this.answer !== this.defaultAnswer) {
+    if (!this.isPrevious && !this.isDefault) {
       this.isDirty = true;
       this.isSaved = false;
     } else {
       this.isDirty = false;
-      if (this.answer !== this.defaultAnswer) {
+      if (!this.isDefault) {
         this.isSaved = true;
       } else {
         this.isSaved = false;
@@ -47,7 +55,7 @@ export default class Question {
     this.answer = this.defaultAnswer;
     this.previousAnswer = this.defaultAnswer;
     this.reset = true;
-    this.store.saveQuestion(this).then(action.bound(() => {
+    return this.store.saveQuestion(this).then(action.bound(() => {
       this.isDirty = false;
       this.isSaved = false;
     }));

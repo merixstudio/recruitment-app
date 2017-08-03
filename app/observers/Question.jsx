@@ -23,11 +23,11 @@ function saveBar(isSaved, isSaving) {
   return null;
 }
 
-function resetQuestion(question) {
-  if (question.defaultAnswer !== question.answer) {
+function resetQuestion(question, submitted) {
+  if (!submitted && !question.isDefault) {
     return (
       <div className="question__reset" onClick={() => question.resetToDefault()}>
-        <div className="question__reset-info" onClick={(event) => event.preventDefault()}>
+        <div className="question__reset-info" onClick={event => event.preventDefault()}>
           It will reset answer to default.
         </div>
       </div>
@@ -52,7 +52,7 @@ const Question = ({ number, question, submitted }) => (
       reset={question.reset}
     />
     { saveBar(question.isSaved, question.isSaving) }
-    { resetQuestion(question) }
+    { resetQuestion(question, submitted) }
   </Card>
 );
 
