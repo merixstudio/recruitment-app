@@ -5,16 +5,12 @@ module.exports = function karmaConfig(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      'unit/**/*.js',
-      'unit/**/*.jsx',
+      'tests.webpack.js',
     ],
     exclude: [
     ],
     preprocessors: {
-      '../app/**/*.js': ['webpack'],
-      '../app/**/*.jsx': ['webpack'],
-      './**/*.js': ['webpack'],
-      './**/*.jsx': ['webpack'],
+      'tests.webpack.js': ['webpack', 'sourcemap'],
     },
     webpack: {
       resolve: {
@@ -23,6 +19,7 @@ module.exports = function karmaConfig(config) {
           app: path.resolve(__dirname, '../app'),
         },
       },
+      devtool: 'inline-source-map',
       module: {
         rules: [
           {
@@ -35,11 +32,23 @@ module.exports = function karmaConfig(config) {
             ],
           },
           {
+            test: /\.(js|jsx)$/,
+            exclude: /(node_modules|test|request.js)/,
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: {
+                esModules: true,
+                produceSourceMap: true,
+              },
+            },
+            enforce: 'post',
+          },
+          {
             test: /\.css$/,
             use: [{
               loader: 'css-loader',
               options: {
-                ourceMap: true,
+                sourceMap: true,
               },
             }],
           },
@@ -70,11 +79,14 @@ module.exports = function karmaConfig(config) {
     webpackMiddleware: {
       stats: 'errors-only',
     },
-    reporters: ['mocha'],
+    coverageIstanbulReporter: {
+      reports: ['text', 'text-summary'],
+      fixWebpackSourcePaths: true,
+    },
+    reporters: ['mocha', 'coverage-istanbul'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
     concurrency: Infinity,

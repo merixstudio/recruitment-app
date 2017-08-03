@@ -8,7 +8,7 @@ describe('Question observable', () => {
 
   beforeEach(() => {
     const store = new QuizStore();
-    saveQuestion = sinon.stub(store, 'saveQuestion');
+    saveQuestion = sinon.stub(store, 'saveQuestion').returns(Promise.resolve());
     question = new Question(store, {
       id: 0,
       language: 'javascript',
@@ -51,5 +51,14 @@ describe('Question observable', () => {
     question.changeAnswer(`${question.answer} addtitional answer`);
     question.save();
     expect(saveQuestion.calledOnce).toBe(true);
+  });
+
+  it('should be able to reset question answer', () => {
+    question.changeAnswer('Definitely new answer');
+    question.resetToDefault().then(() => {
+      expect(question.answer).toBe(question.defaultAnswer);
+      expect(question.isDirty).toBe(false);
+      expect(question.isSaved).toBe(false);
+    });
   });
 });

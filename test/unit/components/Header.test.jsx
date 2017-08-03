@@ -4,9 +4,6 @@ import jasmineEnzyme from 'jasmine-enzyme';
 
 import AppBar from 'material-ui/AppBar';
 import Header from 'app/components/Header';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-injectTapEventPlugin();
 
 describe('Header component', () => {
   beforeEach(() => {

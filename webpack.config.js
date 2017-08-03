@@ -87,10 +87,11 @@ module.exports = {
       'process.env.NODE_ENV': process.env.NODE_ENV,
     }),
     new webpack.EnvironmentPlugin({
-      BACKEND_URL: 'http://localhost:8000',
+      BACKEND_URL: 'http://192.168.99.180:8000',
     }),
   ],
   devServer: {
+    disableHostCheck: true,
     contentBase: path.join(__dirname, 'app'),
     historyApiFallback: true,
     port: 4000,

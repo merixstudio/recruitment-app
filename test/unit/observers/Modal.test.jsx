@@ -4,13 +4,10 @@ import jasmineEnzyme from 'jasmine-enzyme';
 import sinon from 'sinon';
 import { Provider } from 'mobx-react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Modal from 'app/observers/Modal';
 import UIStore from 'app/stores/UIStore';
 import QuizStore from 'app/stores/QuizStore';
-
-injectTapEventPlugin();
 
 describe('Modal observer', () => {
   let uiStore;

@@ -2,13 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import jasmineEzyme from 'jasmine-enzyme';
 import Chip from 'material-ui/Chip';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Question from 'app/observers/Question';
 import QuestionModel from 'app/stores/objects/Question';
 import CodeEditor from 'app/components/CodeEditor';
 
-injectTapEventPlugin();
 
 describe('Question observer', () => {
   let question;
@@ -59,5 +57,16 @@ describe('Question observer', () => {
     const wrapper = shallow(<Question number={1} question={question} submitted />);
     const editor = wrapper.find(CodeEditor);
     expect(editor.node.props.readOnly).toBe(true);
+  });
+
+  it('should show reset question button if quiz is not submitted and question was changed', () => {
+    const wrapper = shallow(<Question number={1} question={question} />);
+    expect(wrapper.find('.question__reset').length).toBe(0);
+
+    question.answer = 'new content';
+    expect(wrapper.find('.question__reset').length).toBe(1);
+
+    wrapper.setProps({ submitted: true });
+    expect(wrapper.find('.question__reset').length).toBe(0);
   });
 });
