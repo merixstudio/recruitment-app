@@ -11,7 +11,7 @@ def stack = new gd.mrx.ci.DockerStack(this, 'hr-frontend', [
     extra_env: { s ->
         backend_hostname = s.getAPIHostname('merix-hr', 'backend', 'dev')
         [
-            "BACKEND_URL=http://${backend_hostname}/api/",
+            "BACKEND_URL=http://${backend_hostname}",
         ]
     }
 ])
