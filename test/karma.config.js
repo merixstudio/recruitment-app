@@ -76,6 +76,15 @@ module.exports = function karmaConfig(config) {
         'react-addons-test-utils': 'react-dom',
       },
     },
+    plugins: [
+      'karma-jasmine',
+      'karma-phantomjs-launcher',
+      'karma-webpack',
+      'karma-sourcemap-loader',
+      'karma-coverage-istanbul-reporter',
+      'karma-chrome-launcher',
+      'karma-mocha-reporter',
+    ],
     webpackMiddleware: {
       stats: 'errors-only',
     },
@@ -87,7 +96,7 @@ module.exports = function karmaConfig(config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: false,
     concurrency: Infinity,
   });

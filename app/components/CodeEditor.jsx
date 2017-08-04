@@ -48,6 +48,7 @@ export default class CodeEditor extends React.Component {
         'Ctrl-S': () => this.props.onSave(),
       },
     });
+    window.codeMirror = codeMirror;
 
     codeMirror.on('blur', () => this.props.onSave());
 
@@ -101,3 +102,11 @@ CodeEditor.defaultProps = {
   onSave: () => {},
   onChange: () => {},
 };
+
+export let _getModeForLanguage;
+export let _checkHeight;
+
+if (process.env.NODE_ENV === 'TESTING') {
+  _checkHeight = checkHeight;
+  _getModeForLanguage = getModeForLanguage;
+}
