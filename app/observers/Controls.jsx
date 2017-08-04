@@ -10,8 +10,8 @@ const Controls = ({ quizStore, UIStore }) => (
   <div key="controls" className="app__controls">
     { !quizStore.isSubmitted ?
     [
-      <RaisedButton key="save" className="app__button" label="save all" onClick={() => quizStore.saveQuestions()} />,
-      <RaisedButton key="finish" className="app__button" label="finish" onClick={() => UIStore.toggleModal()} primary />,
+      <a key="save" className="app__button" onClick={() => quizStore.saveQuestions()} >Save All</a>,
+      <a key="finish" className="app__button app__button--primary" onClick={() => UIStore.toggleModal()}>Finish</a>,
     ] : null
     }
   </div>

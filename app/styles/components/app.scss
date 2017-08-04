@@ -37,6 +37,32 @@
     color: #666;
   }
 
+  &__button {
+    display: inline-block;
+    padding: 0 27px 2px;
+    border: 2px solid #666;
+    border-radius: 2px;
+    background: transparent;
+    color: #666;
+    font-size: 19px;
+    white-space: nowrap;
+    line-height: 42px;
+    cursor: pointer;
+    transition: all .25s ease;
+
+    &--primary {
+      color: #fff;
+      background-color: $merix-1-color;
+      border-color: $merix-1-color;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    &:hover {
+      color: $merix-3-color;
+      border-color: $merix-3-color;
+    }
+  }
   &__button:not(:last-child) {
     margin: 0 15px;
   }
@@ -87,6 +113,9 @@
     }
     &__error {
       font-size: 3rem;
+    }
+    &__done {
+      display: none;
     }
   }
 }

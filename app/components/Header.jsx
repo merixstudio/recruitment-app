@@ -1,8 +1,14 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
 
 const Header = () => (
-  <AppBar title="Merix Recrutation Quiz" className="header" showMenuIconButton={false} />
+  <header className="header">
+    <a className="header__mainpage-link" href="http://merixstudio.com"></a>
+    <h1 className="header__title">Individual Recruitment Quiz</h1>
+    <div className="header__decorator">
+     <div className="header__decorator-left" />
+     <div className="header__decorator-right" />
+    </div>
+  </header>
 );
 
 export default Header;

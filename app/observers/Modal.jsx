@@ -19,16 +19,14 @@ const Modal = ({ quizStore, UIStore }) => (
         Are you sure?
       </p>
       <div className="modal__footer">
-        <RaisedButton label="No" className="modal__cancel" onClick={() => UIStore.toggleModal()} />
-        <RaisedButton
-          label="Yes"
-          className="modal__confirm"
+        <a className="app__button modal__cancel" onClick={() => UIStore.toggleModal()}>Cancel</a>
+        <a
+          className="app__button app__button--primary modal__confirm"
           onClick={() => {
             quizStore.submitQuiz();
             UIStore.toggleModal();
           }}
-          primary
-        />
+        >Finish</a>
       </div>
     </Card>
   </div>

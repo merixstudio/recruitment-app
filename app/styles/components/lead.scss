@@ -2,22 +2,45 @@
   margin-bottom: 60px;
 
   &__heading {
-    color: #666;
+    font-size: 44px;
+    font-weight: 300;
+    color: #333;
+    margin: 60px 0;
+    text-align: center;
+    vertical-align: text-top;
+    line-height: 56px;
+    text-indent: -44px;
+
+    &::before {
+      content: '/';
+      text-indent: 0;
+      position: relative;
+      top: 4px;
+      display: inline-block;
+      width: 56px;
+      font-size: 56px;
+      color: #dadada;
+    }
   }
-  &__heading {
-    font-size: 32px;
-  }
+
   &__paragraph {
+    font-size: 18px;
     line-height: 1.5em;
     padding-right: 10%;
     text-indent: 2em;
   }
 }
 
-@media (max-width: $tablet) {
+@media (max-width: $mobile) {
   .lead {
     &__heading {
-      font-size: 28px;
+      font-size: 36px;
+      line-height: 44px;
+      &::before {
+        top: 0;
+        width: 44px;
+        font-size: 44px;
+      }
     }
     &__paragraph {
       padding: 0;
@@ -25,13 +48,18 @@
   }
 }
 
-@media (max-width: $mobile) {
+@media (max-width: $mobile-small) {
   .lead {
-    &__paragraph {
-      font-size: 14px;
-    }
     &__heading {
-      font-size: 24px;
+      font-size: 28px;
+      line-height: 32px;
+      &::before {
+        width: 32px;
+        font-size: 32px;
+      }
+    }
+    &__paragraph {
+      padding: 0;
     }
   }
 }
