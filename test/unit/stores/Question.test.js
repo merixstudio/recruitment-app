@@ -5,7 +5,6 @@ import QuizStore from 'app/stores/QuizStore';
 describe('Question observable', () => {
   let question;
   let saveQuestion;
-
   beforeEach(() => {
     const store = new QuizStore();
     saveQuestion = sinon.stub(store, 'saveQuestion').returns(Promise.resolve());
@@ -60,5 +59,17 @@ describe('Question observable', () => {
       expect(question.isDirty).toBe(false);
       expect(question.isSaved).toBe(false);
     });
+  });
+
+  it('should mark question as saved if it came form backend with different answer then default', () => {
+    const savedQuestion = new Question(null, {
+      id: 0,
+      language: 'javascript',
+      answer: 'saved answer',
+      question: 'Default question.',
+      default_answer: 'default answer',
+    });
+
+    expect(savedQuestion.isSaved).toBe(true);
   });
 });

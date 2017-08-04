@@ -3,7 +3,6 @@ import { mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
 import sinon from 'sinon';
 import { Provider } from 'mobx-react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Controls from 'app/observers/Controls';
 import UIStore from 'app/stores/UIStore';
@@ -26,25 +25,31 @@ describe('Controls observer', () => {
 
   it('should save question when first button is clicked', () => {
     const wrapper = mount((
-      <MuiThemeProvider>
-        <Provider UIStore={uiStore} quizStore={quizStore}>
-          <Controls />
-        </Provider>
-      </MuiThemeProvider>
+      <Provider UIStore={uiStore} quizStore={quizStore}>
+        <Controls />
+      </Provider>
     ));
-    wrapper.find('.app__button').first().find('button').simulate('click');
+    wrapper.find('.app__button').first().find('a').simulate('click');
     expect(saveSpy.calledOnce).toBe(true);
   });
 
   it('should open modal when second button is clicked', () => {
     const wrapper = mount((
-      <MuiThemeProvider>
-        <Provider UIStore={uiStore} quizStore={quizStore}>
-          <Controls />
-        </Provider>
-      </MuiThemeProvider>
+      <Provider UIStore={uiStore} quizStore={quizStore}>
+        <Controls />
+      </Provider>
     ));
-    wrapper.find('.app__button').last().find('button').simulate('click');
+    wrapper.find('.app__button').last().find('a').simulate('click');
     expect(modalSpy.calledOnce).toBe(true);
+  });
+
+  it('should not display buttons if test is submitted', () => {
+    quizStore.isSubmitted = true;
+    const wrapper = mount((
+      <Provider UIStore={uiStore} quizStore={quizStore}>
+        <Controls />
+      </Provider>
+    ));
+    expect(wrapper.find('.app__button').length).toBe(0);
   });
 });

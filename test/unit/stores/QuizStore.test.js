@@ -1,6 +1,6 @@
 import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
-import quizActions from 'app/stores/quizActions';
+import quizActions, { getQuizId } from 'app/stores/quizActions';
 import QuizStore from 'app/stores/QuizStore';
 import Question from 'app/stores/objects/Question';
 
@@ -103,6 +103,21 @@ describe('QuizStore', () => {
       done();
     });
   });
+
+  it('should not submit quiz if it is already submitted', (done) => {
+    pathname = 'someID';
+    store.isSubmitted = true;
+    const saveQuestionsSpy = sinon.stub(store, 'saveQuestions').returns(Promise.resolve());
+
+    fetchMock.putOnce('end:quiz/someID', {}, { name: 'putQuiz' });
+    store.submitQuiz().catch(() => {
+      expect(store.isSubmitted).toBe(true);
+      expect(fetchMock.called('putQuiz')).toBe(false);
+      expect(saveQuestionsSpy.called).toBe(false);
+      done();
+    });
+  });
+
   it('should react to quiz not being found on server', (done) => {
     pathname = 'wrongId';
     fetchMock.getOnce('end:quiz/wrongId', { status: 404, body: {} }, { name: 'fetchQuiz404' });
@@ -113,5 +128,14 @@ describe('QuizStore', () => {
     });
   });
 
+  it('should correctly get id from pathname', () => {
+    quizActions.__Rewire__('location', { pathname: '/something' });
+    expect(getQuizId()).toBe('something');
+    quizActions.__Rewire__('location', { pathname: '' });
+    expect(getQuizId()).toBe('');
+    quizActions.__Rewire__('location', { pathname: '/url/' });
+    expect(getQuizId()).toBe('url');
+
+  });
   afterEach(() => fetchMock.restore());
 });

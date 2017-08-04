@@ -73,12 +73,4 @@ export default class Question {
       this.store.saveQuestion(this);
     }
   }
-
-  toJSON() {
-    return {
-      id: this.id,
-      answer: this.answer,
-      question: this.question,
-    };
-  }
 }

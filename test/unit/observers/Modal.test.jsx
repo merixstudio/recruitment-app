@@ -32,7 +32,7 @@ describe('Modal observer', () => {
         </Provider>
       </MuiThemeProvider>
     ));
-    wrapper.find('button').first().simulate('click');
+    wrapper.find('a').first().simulate('click');
     expect(modalSpy.calledOnce).toBe(true);
   });
 
@@ -56,8 +56,23 @@ describe('Modal observer', () => {
         </Provider>
       </MuiThemeProvider>
     ));
-    wrapper.find('button').last().simulate('click');
+    wrapper.find('a').last().simulate('click');
     expect(submitSpy.calledOnce).toBe(true);
     expect(modalSpy.calledOnce).toBe(true);
+  });
+
+  it('should have additional class when modal closed', () => {
+    uiStore.isModalOpen = true;
+    const wrapper = mount((
+      <MuiThemeProvider>
+        <Provider UIStore={uiStore} quizStore={quizStore}>
+          <Modal />
+        </Provider>
+      </MuiThemeProvider>
+    ));
+    expect(wrapper.find('.modal').hasClass('modal--hidden')).toBe(false);
+
+    uiStore.isModalOpen = false;
+    expect(wrapper.find('.modal').hasClass('modal--hidden')).toBe(true);
   });
 });
