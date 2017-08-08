@@ -1,4 +1,4 @@
-$height-half: 54px;
+$height-half: 53px;
 
 .header {
   position: relative;
@@ -9,6 +9,7 @@ $height-half: 54px;
   background-color: #F7F7F7;
   height: 2*$height-half;
   border-bottom: 1px solid #d7d7d7;
+  box-sizing: content-box;
 
   &__mainpage-link {
     display: inline-block;
@@ -26,7 +27,9 @@ $height-half: 54px;
   }
 
   &__title {
-    margin-bottom: 0;
+    vertical-align: top;
+    line-height: 2*$height-half;
+    margin: 0;
     display: inline-block;
     font-weight: 300;
     padding-left: 30px;
@@ -37,7 +40,7 @@ $height-half: 54px;
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
+    height: $height-half * 2;
     width: 220px;
     z-index: 1;
 
@@ -59,26 +62,26 @@ $height-half: 54px;
         width: calc(100% + #{$displacement});
         background-color: #fff;
         left: -1*$displacement/2;
-        border-left: 1px solid #bbb;
+        border-left: 1px solid #d7d7d7;
 
       }
       &::after {
-        top: -1px;
-        border-top: 1px solid #bbb;
+        top: 0;
         transform: skewX(-$skew);
       }
       &::before {
-        bottom: -1px;
-        border-bottom: 1px solid #bbb;
+        bottom: 0;
         transform: skewX($skew);
 
       }
     }
     &-right {
-      position: relative;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
       z-index: -2;
       display: inline-block;
-      height: 100%;
       width: 100px;
       background: #e09531;
       background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#e09531),color-stop(100%,#d56942));
@@ -90,8 +93,6 @@ $height-half: 54px;
 @media (max-width: $tablet-large) {
   .header {
     &__title {
-      vertical-align: top;
-      margin-top: 20px;
     }
     &__mainpage-link {
       font-size: 20px;
@@ -107,9 +108,7 @@ $height-half: 54px;
     padding-left: 24px;
 
     &__title {
-      vertical-align: top;
       font-size: 32px;
-      margin-top: 30px;
     }
     &__decorator {
       width: 120px;
@@ -123,18 +122,19 @@ $height-half: 54px;
   }
 }
 @media (max-width: $mobile) {
-  $height-half: 40px;
   .header {
+    $height-half: 41px;
     padding-left: 12px;
-    height: 80px;
+    height: 82px;
 
     &__title {
       padding-left: 0;
       font-size: 24px;
-      margin-top: 22px;
     }
     &__decorator {
       width: 80px;
+      height: $height-half * 2;
+
       &-left {
         width: 20px;
       }
@@ -147,7 +147,7 @@ $height-half: 54px;
 @media (max-width: $mobile-small) {
   .header {
     padding-left: 12px;
-    height: 80px;
+    height: 82px;
 
     &__title {
       display: none;

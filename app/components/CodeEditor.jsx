@@ -48,7 +48,6 @@ export default class CodeEditor extends React.Component {
         'Ctrl-S': () => this.props.onSave(),
       },
     });
-    window.codeMirror = codeMirror;
 
     codeMirror.on('blur', () => this.props.onSave());
 
