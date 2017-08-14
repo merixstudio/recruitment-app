@@ -10,7 +10,7 @@ import QuestionCounter from '../components/QuestionCounter';
 import Header from '../components/Header';
 import Lead from '../components/Lead';
 
-function appAnswer(quizStore) {
+function appContent(quizStore) {
   if (quizStore.isFetching) {
     return (
       <div className="app__container">
@@ -42,7 +42,7 @@ function appAnswer(quizStore) {
 const App = ({ quizStore }) => (
   <div className="app">
     <Header />
-    { appAnswer(quizStore) }
+    { appContent(quizStore) }
     <Modal />
   </div>
 );

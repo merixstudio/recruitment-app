@@ -32,7 +32,7 @@ describe('Modal observer', () => {
         </Provider>
       </MuiThemeProvider>
     ));
-    wrapper.find('a').first().simulate('click');
+    wrapper.find('button').first().simulate('click');
     expect(modalSpy.calledOnce).toBe(true);
   });
 
@@ -56,7 +56,7 @@ describe('Modal observer', () => {
         </Provider>
       </MuiThemeProvider>
     ));
-    wrapper.find('a').last().simulate('click');
+    wrapper.find('button').last().simulate('click');
     expect(submitSpy.calledOnce).toBe(true);
     expect(modalSpy.calledOnce).toBe(true);
   });

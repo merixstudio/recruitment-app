@@ -3,7 +3,7 @@ import Question from './objects/Question';
 import request from '../utils/request';
 import { backendUrl } from '../config';
 
-let location = window.location;
+const location = window.location;
 
 export function getQuizId() {
   const pathname = location.pathname;

@@ -13,7 +13,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function checkHeight(editor, height, maxHeight) {
+export function checkHeight(editor, height, maxHeight) {
   if (height > maxHeight) {
     editor.style.height = `${maxHeight}px`;
   } else {
@@ -21,7 +21,7 @@ function checkHeight(editor, height, maxHeight) {
   }
 }
 
-function getModeForLanguage(language) {
+export function getModeForLanguage(language) {
   switch (language) {
     case 'django-template': return 'django';
     case 'jsx': return 'jsx';
@@ -55,7 +55,9 @@ export default class CodeEditor extends React.Component {
       if (this.props.maxHeight) {
         checkHeight(this.editor, instance.doc.height, this.props.maxHeight);
       }
-      this.props.onChange(instance.getValue());
+      if (this.props.onChange) {
+        this.props.onChange(instance.getValue());
+      }
     });
 
     if (this.props.maxHeight) {
@@ -98,14 +100,6 @@ CodeEditor.defaultProps = {
   reset: false,
   readOnly: false,
   maxHeight: null,
-  onSave: () => {},
-  onChange: () => {},
+  onSave: null,
+  onChange: null,
 };
-
-export let _getModeForLanguage;
-export let _checkHeight;
-
-if (process.env.NODE_ENV === 'TESTING') {
-  _checkHeight = checkHeight;
-  _getModeForLanguage = getModeForLanguage;
-}

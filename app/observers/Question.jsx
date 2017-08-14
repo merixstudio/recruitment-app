@@ -26,11 +26,11 @@ function saveBar(isSaved, isSaving) {
 function resetQuestion(question, submitted) {
   if (!submitted && !question.isDefault) {
     return (
-      <div className="question__reset" onClick={() => question.resetToDefault()}>
-        <div className="question__reset-info" onClick={event => event.preventDefault()}>
+      <button className="question__reset" onClick={() => question.resetToDefault()}>
+        <span role="presentation" className="question__reset-info" onClick={event => event.preventDefault()}>
           It will reset answer to default.
-        </div>
-      </div>
+        </span>
+      </button>
     );
   }
   return null;

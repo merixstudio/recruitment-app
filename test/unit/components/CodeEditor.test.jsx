@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import CodeMirror from 'codemirror';
-import CodeEditor, { _checkHeight, _getModeForLanguage } from 'app/components/CodeEditor';
+import CodeEditor, { checkHeight, getModeForLanguage } from 'app/components/CodeEditor';
 
 describe('Code Editor component', () => {
   it('should wrap Code Mirror editor', () => {
@@ -39,19 +39,64 @@ describe('Code Editor component', () => {
 
   it('should set style.height to maxHeight if maxHeight is exceeded', () => {
     const el = { style: {} };
-    _checkHeight(el, 200, 300);
+    checkHeight(el, 200, 300);
     expect(el.style.height).toBe('auto');
-    _checkHeight(el, 400, 300);
+    checkHeight(el, 400, 300);
     expect(el.style.height).toBe('300px');
   });
 
   it('should translate language to correct mode', () => {
-    expect(_getModeForLanguage('english')).toBe('text');
-    expect(_getModeForLanguage('javascript')).toBe('javascript');
-    expect(_getModeForLanguage('django-template')).toBe('django');
-    expect(_getModeForLanguage('html')).toBe('htmlmixed');
-    expect(_getModeForLanguage('jsx')).toBe('jsx');
-    expect(_getModeForLanguage('python')).toBe('python');
-    expect(_getModeForLanguage('css')).toBe('css');
+    expect(getModeForLanguage('english')).toBe('text');
+    expect(getModeForLanguage('javascript')).toBe('javascript');
+    expect(getModeForLanguage('django-template')).toBe('django');
+    expect(getModeForLanguage('html')).toBe('htmlmixed');
+    expect(getModeForLanguage('jsx')).toBe('jsx');
+    expect(getModeForLanguage('python')).toBe('python');
+    expect(getModeForLanguage('css')).toBe('css');
+  });
+
+  it('should call onSave prop on blur', () => {
+    let save = false;
+    const onSave = () => { save = true; };
+    const wrapper = mount(<CodeEditor answer="some content" language="english" onSave={onSave} />);
+    const cm = wrapper.node.codeMirror;
+    expect(cm._handlers.blur).toBeTruthy();
+    cm._handlers.blur.forEach(handler => handler.call(null, cm));
+    expect(save).toBe(true);
+  });
+
+  it('should save on Ctrl+S', () => {
+    let save = false;
+    const onSave = () => { save = true; };
+    const wrapper = mount(<CodeEditor answer="some content" language="english" onSave={onSave} />);
+    const cm = wrapper.node.codeMirror;
+
+    expect(cm.options.extraKeys['Ctrl-S'] instanceof Function).toBe(true);
+    cm.options.extraKeys['Ctrl-S'](cm);
+    expect(save).toBe(true);
+  });
+
+  it('should check height when component is mounted', () => {
+    const wrapper = mount(<CodeEditor answer="some content" language="english" maxHeight={200} />);
+    expect(wrapper.node.editor.style.height).toBe('auto');
+  });
+
+  it('should check height on change', () => {
+    const wrapper = mount(<CodeEditor answer="some content" language="english" maxHeight={200} />);
+    const cm = wrapper.node.codeMirror;
+    expect(cm._handlers.change instanceof Array).toBe(true);
+    cm.doc.height = 500;
+    cm._handlers.change.forEach(handler => handler.call(null, cm));
+    expect(wrapper.node.editor.style.height).toBe('200px');
+  });
+
+  it('should call on change handler if provided', () => {
+    let change = false;
+    const onChange = () => { change = true; };
+    const wrapper = mount(<CodeEditor answer="some content" language="english" onChange={onChange} />);
+    const cm = wrapper.node.codeMirror;
+    expect(cm._handlers.change instanceof Array).toBe(true);
+    cm._handlers.change.forEach(handler => handler.call(null, cm));
+    expect(change).toBe(true);
   });
 });

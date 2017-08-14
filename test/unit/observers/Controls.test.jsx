@@ -29,7 +29,7 @@ describe('Controls observer', () => {
         <Controls />
       </Provider>
     ));
-    wrapper.find('.app__button').first().find('a').simulate('click');
+    wrapper.find('.app__button').first().find('button').simulate('click');
     expect(saveSpy.calledOnce).toBe(true);
   });
 
@@ -39,7 +39,7 @@ describe('Controls observer', () => {
         <Controls />
       </Provider>
     ));
-    wrapper.find('.app__button').last().find('a').simulate('click');
+    wrapper.find('.app__button').last().find('button').simulate('click');
     expect(modalSpy.calledOnce).toBe(true);
   });
 

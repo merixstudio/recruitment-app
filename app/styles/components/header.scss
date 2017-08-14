@@ -70,7 +70,8 @@ $height-half: 53px;
         transform: skewX(-$skew);
       }
       &::before {
-        bottom: 0;
+        bottom: -1px;
+        height: calc(50% + 1px);
         transform: skewX($skew);
 
       }
@@ -79,7 +80,7 @@ $height-half: 53px;
       position: absolute;
       top: 0;
       right: 0;
-      bottom: 0;
+      height: 100%;
       z-index: -2;
       display: inline-block;
       width: 100px;
@@ -137,6 +138,10 @@ $height-half: 53px;
 
       &-left {
         width: 20px;
+        &::before {
+          bottom: 0;
+          height: 50%;
+        }
       }
       &-right {
         width: 60px;

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
-import RaisedButton from 'material-ui/RaisedButton';
 import Card from 'material-ui/Card';
 
 import QuizStore from '../stores/QuizStore';
@@ -19,14 +18,14 @@ const Modal = ({ quizStore, UIStore }) => (
         Are you sure?
       </p>
       <div className="modal__footer">
-        <a className="app__button modal__cancel" onClick={() => UIStore.toggleModal()}>Cancel</a>
-        <a
+        <button className="app__button modal__cancel" onClick={() => UIStore.toggleModal()}>Cancel</button>
+        <button
           className="app__button app__button--primary modal__confirm"
           onClick={() => {
             quizStore.submitQuiz();
             UIStore.toggleModal();
           }}
-        >Finish</a>
+        >Finish</button>
       </div>
     </Card>
   </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
@@ -10,8 +9,8 @@ const Controls = ({ quizStore, UIStore }) => (
   <div key="controls" className="app__controls">
     { !quizStore.isSubmitted ?
     [
-      <a key="save" className="app__button" onClick={() => quizStore.saveQuestions()} >Save All</a>,
-      <a key="finish" className="app__button app__button--primary" onClick={() => UIStore.toggleModal()}>Finish</a>,
+      <button key="save" className="app__button" onClick={() => quizStore.saveQuestions()} >Save All</button>,
+      <button key="finish" className="app__button app__button--primary" onClick={() => UIStore.toggleModal()}>Finish</button>,
     ] : null
     }
   </div>
