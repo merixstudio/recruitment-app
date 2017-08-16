@@ -135,7 +135,6 @@ describe('QuizStore', () => {
     expect(getQuizId()).toBe('');
     quizActions.__Rewire__('location', { pathname: '/url/' });
     expect(getQuizId()).toBe('url');
-
   });
   afterEach(() => fetchMock.restore());
 });
