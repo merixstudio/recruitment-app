@@ -1,3 +1,5 @@
+/* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
+
 module.exports = {
   before(browser) {
     browser
@@ -18,10 +20,9 @@ module.exports = {
   },
   'user sees which questions are saved and which are not': function (browser) {
     const quizPage = browser.page.quizPage();
-    const root = quizPage.section.root;
     const firstQuestion = quizPage.section.firstQuestion;
     const secondQuestion = quizPage.section.secondQuestion;
-    firstQuestion.assert.elementPresent('@indicator')
+    firstQuestion.assert.elementPresent('@indicator');
     secondQuestion.assert.elementNotPresent('@indicator');
   },
   'user have access to quiz controls in not submited quiz': function (browser) {
@@ -33,5 +34,7 @@ module.exports = {
   },
   after(browser) {
     browser.end();
-  }
+  },
 };
+
+/* eslint-enable func-names, prefer-arrow-callback, no-unused-expressions */

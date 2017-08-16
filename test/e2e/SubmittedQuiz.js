@@ -1,3 +1,5 @@
+/* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
+
 module.exports = {
   before(browser) {
     browser
@@ -19,7 +21,6 @@ module.exports = {
 
     firstQuestion.expect.element('@reset').to.not.be.present;
     secondQuestion.expect.element('@reset').to.not.be.present;
-
   },
   'user should not be able to submit quiz again': function (browser) {
     const quizPage = browser.page.quizPage();
@@ -30,5 +31,7 @@ module.exports = {
 
   after(browser) {
     browser.end();
-  }
+  },
 };
+
+/* eslint-enable func-names, prefer-arrow-callback, no-unused-expressions */

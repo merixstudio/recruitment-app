@@ -1,3 +1,5 @@
+/* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
+
 module.exports = {
   before(browser) {
     browser
@@ -29,9 +31,9 @@ module.exports = {
     root.expect.element('@modal').to.be.not.visible;
   },
   'user should confirm quiz submition': function (browser) {
-    let quizPage = browser.page.quizPage();
-    let root = quizPage.section.root;
-    let modal = quizPage.section.modal;
+    const quizPage = browser.page.quizPage();
+    const root = quizPage.section.root;
+    const modal = quizPage.section.modal;
 
     browser.execute(function () {
       window.fetchMock.put('end:quiz/goodid', { status: 200, body: {} });
@@ -43,9 +45,10 @@ module.exports = {
     root.expect.element('@modal').to.be.not.visible;
     root.expect.element('@submit').to.be.not.present;
     root.expect.element('@saveAll').to.be.not.present;
-
   },
   after(browser) {
     browser.end();
-  }
+  },
 };
+
+/* eslint-enable func-names, prefer-arrow-callback, no-unused-expressions */

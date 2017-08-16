@@ -1,3 +1,5 @@
+/* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
+
 module.exports = {
   before(browser) {
     browser
@@ -61,7 +63,7 @@ module.exports = {
     browser
       .mouseButtonClick(0)
       .keys('\tconst b = a;')
-      .keys([browser.Keys.CONTROL, "s"])
+      .keys([browser.Keys.CONTROL, 's'])
       .pause(500);
 
     firstQuestion.expect.element('@indicator').text.to.match(/saved/i);
@@ -74,12 +76,14 @@ module.exports = {
     firstQuestion.moveToElement('@editor', 46, 40);
     browser
       .mouseButtonClick(0)
-      .keys('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+      .keys('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n');
 
-      firstQuestion.expect.element('@scroll').to.be.visible;
-      firstQuestion.expect.element('@editor').to.have.css('height').which.equals('350px');
+    firstQuestion.expect.element('@scroll').to.be.visible;
+    firstQuestion.expect.element('@editor').to.have.css('height').which.equals('350px');
   },
   after(browser) {
     browser.end();
   },
 };
+
+/* eslint-enable func-names, prefer-arrow-callback, no-unused-expressions */

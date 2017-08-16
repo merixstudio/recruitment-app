@@ -1,4 +1,5 @@
 import React from 'react';
+/* eslint-disable jsx-a11y/anchor-has-content */
 
 const Header = () => (
   <header className="header">
@@ -10,5 +11,6 @@ const Header = () => (
     </div>
   </header>
 );
+/* eslint-enable jsx-a11y/anchor-has-content */
 
 export default Header;

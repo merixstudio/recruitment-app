@@ -1,3 +1,5 @@
+/* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
+
 module.exports = {
   'user loads quiz with valid id passed': function (browser) {
     const quizPage = browser.page.quizPage();
@@ -9,7 +11,6 @@ module.exports = {
 
     root.assert.visible('@name');
     browser.end();
-
   },
   'user is loading quiz which takes a lot time to laod': function (browser) {
     const quizPage = browser.page.quizPage();
@@ -21,7 +22,6 @@ module.exports = {
 
     root.assert.visible('@loading');
     browser.end();
-
   },
   'user passed wrong quiz id': function (browser) {
     const quizPage = browser.page.quizPage();
@@ -33,6 +33,7 @@ module.exports = {
 
     root.assert.visible('@error');
     browser.end();
-
   },
 };
+
+/* eslint-enable func-names, prefer-arrow-callback, no-unused-expressions */
