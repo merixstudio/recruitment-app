@@ -70,8 +70,8 @@ $height-half: 53px;
         transform: skewX(-$skew);
       }
       &::before {
-        bottom: -1px;
-        height: calc(50% + 1px);
+        bottom: 0;
+        height: calc(50%);
         transform: skewX($skew);
 
       }
