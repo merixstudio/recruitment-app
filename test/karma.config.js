@@ -1,24 +1,17 @@
-const path = require('path');
+const webpackDev = require('../webpack.config.js');
 
 module.exports = function karmaConfig(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      'tests.webpack.js',
-    ],
-    exclude: [
+      'tests.main.js',
     ],
     preprocessors: {
-      'tests.webpack.js': ['webpack', 'sourcemap'],
+      'tests.main.js': ['webpack', 'sourcemap'],
     },
     webpack: {
-      resolve: {
-        extensions: ['.js', '.jsx'],
-        alias: {
-          app: path.resolve(__dirname, '../app'),
-        },
-      },
+      resolve: webpackDev.resolve,
       devtool: 'inline-source-map',
       module: {
         rules: [

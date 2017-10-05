@@ -3,7 +3,6 @@ require('babel-polyfill');
 require('isomorphic-fetch');
 
 injectTapEventPlugin();
-process.env.NODE_ENV = 'TESTING';
 
 const components = require.context('../app/components', true, /\.(js|jsx)$/);
 components.keys().forEach(components);

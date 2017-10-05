@@ -10,7 +10,13 @@ module.exports = {
     const quizPage = browser.page.quizPage();
     const root = quizPage.section.root;
 
+
+    browser.execute(function () {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+
     root.click('@submit');
+
     root.expect.element('@modal').to.be.visible;
   },
   'user should be able to close modal by clicking at background': function (browser) {

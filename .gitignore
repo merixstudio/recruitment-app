@@ -9,3 +9,4 @@ npm-debug.log*
 yarn-error.log*
 selenium-debug.log*
 reports
+coverage

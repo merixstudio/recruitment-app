@@ -1,6 +1,7 @@
 $height-half: 53px;
 
 .header {
+
   position: relative;
   padding: 0.01em 66px 0;
   text-align: left;
@@ -8,9 +9,18 @@ $height-half: 53px;
   color: #fff;
   background-color: #F7F7F7;
   height: 2*$height-half;
-  border-bottom: 1px solid #d7d7d7;
-  box-sizing: content-box;
 
+  box-sizing: content-box;
+  &::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #ddd;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+  }
   &__mainpage-link {
     display: inline-block;
     font-size: 14px;
@@ -70,8 +80,8 @@ $height-half: 53px;
         transform: skewX(-$skew);
       }
       &::before {
-        bottom: 0;
-        height: calc(50%);
+        bottom: -1px;
+        height: calc(50% + 1px);
         transform: skewX($skew);
 
       }
@@ -138,10 +148,6 @@ $height-half: 53px;
 
       &-left {
         width: 20px;
-        &::before {
-          bottom: 0;
-          height: 50%;
-        }
       }
       &-right {
         width: 60px;

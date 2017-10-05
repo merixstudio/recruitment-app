@@ -82,6 +82,8 @@ module.exports = {
     }),
     new ExtractTextPlugin({
       filename: 'bundle.css',
+      disable: false,
+      allChunks: true,
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': process.env.NODE_ENV,

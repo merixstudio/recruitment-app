@@ -16,7 +16,11 @@ const Lead = ({ applicant }) => (
 /* eslint-nable max-len */
 
 Lead.propTypes = {
-  applicant: PropTypes.string.isRequired,
+  applicant: PropTypes.string,
+};
+
+Lead.defaultProps = {
+  applicant: 'Unknown',
 };
 
 export default observer(Lead);
